@@ -12,6 +12,7 @@
 
   <engines>
     <engine name="cordova" version="3.4.1" />
+    <engine name="cordova" version="3.4.0" />
   </engines>
 
   <!-- android -->
