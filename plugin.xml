@@ -23,6 +23,6 @@
       </feature>
     </config-file>
     <source-file src="src/android/MDNS.java" target-dir="src/com/ecor/ngn" />
-    <source-file src="src/android/jmdns.jar" target-dir="src" />
+    <source-file src="src/android/jmdns.jar" target-dir="libs" />
   </platform>
 </plugin>
