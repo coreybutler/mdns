@@ -24,5 +24,6 @@
       </feature>
     </config-file>
     <source-file src="src/android/MDNS.java" target-dir="src/com/ecorventures/ngn" />
+    <source-file src="src/jmdns.jar" target-dir="libs" />
   </platform>
 </plugin>
