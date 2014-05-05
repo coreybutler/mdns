@@ -19,6 +19,7 @@ var exec = require('cordova/exec');
 var MDNS = {
   watch: function (type, callback) {
     return exec(function (result) {
+      console.log(JSON.stringify(result,null,2));
       callback && callback(result);
     }, MDNS.fail, "MDNS", "watch", [type]);
   },
