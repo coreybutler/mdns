@@ -8,7 +8,7 @@
   <keywords>ngn,mdns,bonjour,zeroconf</keywords>
 
   <js-module src="www/MDNS.js" name="MDNS">
-    <clobbers target="MDNS" />
+    <clobbers target="window.MDNS" />
   </js-module>
 
   <!--<engines>
