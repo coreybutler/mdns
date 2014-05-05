@@ -1,3 +1,5 @@
+var cordova = require('cordova');
+
 var MDNS = {
   test: function(callback){
     alert('Running cordova exec');
