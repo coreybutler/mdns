@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" id="org.ecorventures.ngn.MDNS" version="0.1.0">
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" id="com.ecorventures.ngn.MDNS" version="0.1.0">
   <name>MDNS</name>
   <description>mDNS Plugin for NGN</description>
   <license>GPL</license>
@@ -19,9 +19,9 @@
   <platform name="android">
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="MDNS">
-        <param name="android-package" value="org.ecorventures.ngn.MDNS"/>
+        <param name="android-package" value="com.ecorventures.ngn.MDNS"/>
       </feature>
     </config-file>
-    <source-file src="src/android/MDNS.java" target-dir="src/org/ecorventures/ngn" />
+    <source-file src="src/android/MDNS.java" target-dir="src/com/ecorventures/ngn" />
   </platform>
 </plugin>
