@@ -1,5 +1,6 @@
 var MDNS = {
   test: function(callback){
+    alert('Running cordova exec');
     cordova.exec(
         callback, // success callback function
         callback, // error callback function

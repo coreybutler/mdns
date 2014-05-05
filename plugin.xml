@@ -4,10 +4,11 @@
   <name>MDNS</name>
   <description>mDNS Plugin for NGN</description>
   <license>GPL</license>
+  <author>Corey Butler</author>
   <keywords>ngn,mdns,bonjour,zeroconf</keywords>
 
   <js-module src="www/MDNS.js" name="MDNS">
-    <clobbers target="window.MDNS" />
+    <clobbers target="MDNS" />
   </js-module>
 
   <!--<engines>
