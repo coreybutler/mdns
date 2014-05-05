@@ -1,4 +1,4 @@
-package com.ecorventures.ngn;
+package com.ecor.ngn;
 
 //import java.io.IOException;
 
