@@ -1,9 +1,6 @@
 var exec = require('cordova/exec');
 
-var MDNS = function(){
-
-  this.merge = function(source, target, force) {
-    target = target || this;
+var merge = function(source, target, force){
     force = force || false;
     Object.getOwnPropertyNames(source).forEach(function(attr) {
 
@@ -21,11 +18,15 @@ var MDNS = function(){
     return target;
   };
 
+
+var MDNS = function(){
+
   alert('yo');
 
 };
 
-MDNS.merge(EventEmitter.prototype);
+// Add event emitter capabilities to MDNS
+merge(MDNS,EventEmitter.prototype);
 
 module.exports = MDNS;
 
