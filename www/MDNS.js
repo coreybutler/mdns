@@ -1,27 +1,52 @@
 var exec = require('cordova/exec');
 
-var merge = function(source, target, force){
-  force = force || false;
-  Object.getOwnPropertyNames(source).forEach(function(attr) {
-
-    // If the attribute already exists,
-    // it will not be recreated, unless force is true.
-    if (target.hasOwnProperty(attr)){
-      if (force)
-        delete target[attr];
-    }
-
-    if (!target.hasOwnProperty(attr))
-      Object.defineProperty(target, attr, Object.getOwnPropertyDescriptor(source, attr));
-
-  });
-  return target;
-};
-
-
 var MDNS = function(){
 
   Object.defineProperties(this,{
+    handlers:{
+      enumerable: false,
+      writable: true,
+      configurable: true,
+      value: {}
+    },
+    oncehandlers:{
+      enumerable: false,
+      writable: true,
+      configurable: true,
+      value: {}
+    },
+    on: {
+      enumerable: true,
+      writable: false,
+      configurable: false,
+      value: function(eventName,fn){
+        this.handlers[eventName] this.handlers[eventName] || [];
+        this.handlers[eventName].push(fn);
+      }
+    },
+    once: {
+      enumerable: true,
+      writable: false,
+      configurable: false,
+      value: function(eventName,fn){
+        this.oncehandlers[eventName] this.oncehandlers[eventName] || [];
+        this.oncehandlers[eventName].push(fn);
+      }
+    },
+    handleEvent: {
+      enumerable: false,
+      writable: false,
+      configurable: false,
+      value: function(data){
+        (this.handlers[data.action]||[]).forEach(function(handler){
+          handler.apply(me,[data]);
+        });
+        (this.oncehandlers[data.action]||[]).forEach(function(handler){
+          handler.apply(me,[data]);
+        });
+        delete this.oncehandlers[data.action];
+      }
+    },
     listen: {
       enumerable: true,
       writable: false,
@@ -29,21 +54,22 @@ var MDNS = function(){
       value: function(type){
         var me = this;
         return exec(function(result) {
-            if (type){
-              me.emit('evt',result);
-              return;
-            }
-            me.emit('evt',result);
-          }, function(e){
-            me.emit('error',e);
-          }, "MDNS", "monitor", []);
+          var data = typeof result === 'object' ? result : {
+            action: 'unknown',
+          };
+
+          if (type){
+            me.handleEvent(data);
+            return;
+          }
+          me.handleEvent(data);
+        }, function(e){
+          throw e;
+        }, "MDNS", "monitor", []);
       }
     }
   });
 };
-
-// Add event emitter capabilities to MDNS
-merge(MDNS,EventEmitter.prototype);
 
 module.exports = MDNS;
 
