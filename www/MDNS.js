@@ -58,7 +58,7 @@ var MDNS = function(_type){
 
         return exec(function(result) {
           var data = typeof result === 'object' ? result : {
-            action: 'unknown',
+            action: result,
           };
           alert('JAVA CALLED: '+data.action);
           if (type !== null){
