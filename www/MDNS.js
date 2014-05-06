@@ -60,6 +60,7 @@ var MDNS = function(_type){
           var data = typeof result === 'object' ? result : {
             action: 'unknown',
           };
+          alert('JAVA CALLED: '+data.action);
           if (type !== null){
             data.action === type && me.handleEvent(data);
             return;
