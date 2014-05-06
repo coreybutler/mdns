@@ -58,7 +58,7 @@ public class MDNS extends CordovaPlugin {
 
     // Handle commands
     if (action.equals("monitor")){
-      callbackContext.success("monitor");
+      callbackContext.success(action);
     } else {
       callbackContext.error("Invalid Action: "+action);
     }
