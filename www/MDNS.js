@@ -21,6 +21,7 @@ var merge = function(source, target, force){
 
 var MDNS = function(){
   var me = this;
+  alert(EventEmitter.on);
   exec(function(result) {
     me.emit('evt',result);
   }, function(e){
