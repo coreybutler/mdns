@@ -15,15 +15,15 @@ var MDNS = function(type){
 //      configurable: true,
 //      value: {}
 //    },
-//    on: {
-//      enumerable: true,
-//      writable: false,
-//      configurable: false,
-//      value: function(eventName,fn){
+    on: {
+      enumerable: true,
+      writable: false,
+      configurable: false,
+      value: function(eventName,fn){
 //        this.handlers[eventName] this.handlers[eventName] || [];
 //        this.handlers[eventName].push(fn);
-//      }
-//    },
+      }
+    },
 //    once: {
 //      enumerable: true,
 //      writable: false,
