@@ -11,6 +11,9 @@
     <repo>https://github.com/coreybutler/mdns.git</repo>
     <issue>https://github.com/coreybutler/mdns/issues</issue>
 
+    <js-module src="www/EventEmitter.js" name="EventEmitter">
+        <clobbers target="EventEmitter" />
+    </js-module>
     <js-module src="www/MDNS.js" name="MDNS">
         <clobbers target="MDNS" />
     </js-module>
