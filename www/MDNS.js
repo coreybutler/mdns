@@ -2,31 +2,24 @@ var exec = require('cordova/exec');
 
 var MDNS = function(){
 
-  Object.defineProperties(this,{
-    merge: {
-      enumerable: false,
-      writable: false,
-      configurable: false,
-      value: function(source, target, force) {
-        target = target || this;
-        force = force || false;
-        Object.getOwnPropertyNames(source).forEach(function(attr) {
+  this.merge = function(source, target, force) {
+    target = target || this;
+    force = force || false;
+    Object.getOwnPropertyNames(source).forEach(function(attr) {
 
-          // If the attribute already exists,
-          // it will not be recreated, unless force is true.
-          if (target.hasOwnProperty(attr)){
-            if (force)
-              delete target[attr];
-          }
-
-          if (!target.hasOwnProperty(attr))
-            Object.defineProperty(target, attr, Object.getOwnPropertyDescriptor(source, attr));
-
-        });
-        return target;
+      // If the attribute already exists,
+      // it will not be recreated, unless force is true.
+      if (target.hasOwnProperty(attr)){
+        if (force)
+          delete target[attr];
       }
-    }
-  });
+
+      if (!target.hasOwnProperty(attr))
+        Object.defineProperty(target, attr, Object.getOwnPropertyDescriptor(source, attr));
+
+    });
+    return target;
+  };
 
   alert('yo');
 
