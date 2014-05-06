@@ -17,27 +17,10 @@
 var exec = require('cordova/exec');
 
 var MDNS = {
-  watch: function (type, callback) {
+  test: function (type, callback) {
     return exec(function (result) {
-      console.log(JSON.stringify(result,null,2));
       callback && callback(result);
-    }, MDNS.fail, "MDNS", "watch", [type]);
-  },
-  unwatch: function (type) {
-    return exec(null, MDNS.fail, "MDNS", "unwatch", [type]);
-  },
-  close: function () {
-    return exec(null, MDNS.fail, "MDNS", "close", []);
-  },
-  register: function (type, name, port, text) {
-    if (!type) {
-      console.error("'type' is a required field");
-      return;
-    }
-    return exec(null, MDNS.fail, "MDNS", "register", [type, name, port, text]);
-  },
-  unregister: function () {
-    return exec(null, MDNS.fail, "MDNS", "unregister", []);
+    }, MDNS.fail, "MDNS", "whatever", [type]);
   },
   fail: function (o) {
     console.error("Error " + JSON.stringify(o));
