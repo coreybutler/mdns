@@ -22,7 +22,6 @@ var merge = function(source, target, force){
 var MDNS = function(){
   var me = this;
   exec(function(result) {
-    alert('BLUNT FORCE TEST: '+result);
     me.emit('evt',result);
   }, function(e){
     me.emit('error',e);
