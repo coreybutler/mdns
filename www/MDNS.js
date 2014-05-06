@@ -26,7 +26,7 @@ var MDNS = function(){
     me.emit('evt',result);
   }, function(e){
     me.emit('error',e);
-  }, "MDNS", "monitor", [type]);
+  }, "MDNS", "monitor", []);
 };
 
 // Add event emitter capabilities to MDNS
