@@ -20,9 +20,13 @@ var merge = function(source, target, force){
 
 
 var MDNS = function(){
-
-  alert('yo');
-
+  var me = this;
+  exec(function(result) {
+    alert('BLUNT FORCE TEST: '+result);
+    me.emit('evt',result);
+  }, function(e){
+    me.emit('error',e);
+  }, "MDNS", "monitor", [type]);
 };
 
 // Add event emitter capabilities to MDNS
