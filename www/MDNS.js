@@ -39,6 +39,7 @@ var MDNS = function(_type){
       configurable: false,
       value: function(data){
         (this.handlers[data.action]||[]).forEach(function(handler){
+          alert(data);
           handler.apply(me,[data]);
         });
         (this.oncehandlers[data.action]||[]).forEach(function(handler){
