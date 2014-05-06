@@ -17,10 +17,10 @@ public class MDNS extends CordovaPlugin {
   public static final String TAG = "MDNS";
 
   NsdManager mNsdManager;
-    NsdManager.ResolveListener mResolveListener;
-    NsdManager.DiscoveryListener mDiscoveryListener;
-    NsdManager.RegistrationListener mRegistrationListener;
-    Context mContext;
+  NsdManager.ResolveListener mResolveListener;
+  NsdManager.DiscoveryListener mDiscoveryListener;
+  NsdManager.RegistrationListener mRegistrationListener;
+  Context mContext;
 
   @Override
   public void initialize(CordovaInterface cordova, CordovaWebView webView) {
