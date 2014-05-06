@@ -3,12 +3,12 @@ var exec = require('cordova/exec');
 var MDNS = function(type){
 
   Object.defineProperties(this,{
-//    handlers:{
-//      enumerable: false,
-//      writable: true,
-//      configurable: true,
-//      value: {}
-//    },
+    handlers:{
+      enumerable: false,
+      writable: true,
+      configurable: true,
+      value: {}
+    },
 //    oncehandlers:{
 //      enumerable: false,
 //      writable: true,
@@ -20,8 +20,8 @@ var MDNS = function(type){
       writable: false,
       configurable: false,
       value: function(eventName,fn){
-//        this.handlers[eventName] this.handlers[eventName] || [];
-//        this.handlers[eventName].push(fn);
+        this.handlers[eventName] this.handlers[eventName] || [];
+        this.handlers[eventName].push(fn);
       }
     },
 //    once: {
@@ -54,13 +54,13 @@ var MDNS = function(type){
       configurable: false,
       value: function(type){
         var me = this;
+
         return exec(function(result) {
           var data = typeof result === 'object' ? result : {
             action: 'unknown',
           };
-
           if (type){
-            me.handleEvent(data);
+            data.action === type && me.handleEvent(data);
             return;
           }
           me.handleEvent(data);
