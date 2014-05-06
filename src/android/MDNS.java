@@ -33,11 +33,11 @@ public class MDNS extends CordovaPlugin {
 
     WifiManager wifi = (WifiManager) this.cordova.getActivity()
         .getSystemService(android.content.Context.WIFI_SERVICE);
-    lock = wifi.createMulticastLock("ZeroConfPluginLock");
+    lock = wifi.createMulticastLock("MDNSPluginLock");
     lock.setReferenceCounted(true);
     lock.acquire();
 
-    Log.v("ZeroConf", "Initialized");
+    Log.v("MDNS", "Initialized");
   }
 
   @Override
@@ -105,7 +105,7 @@ public class MDNS extends CordovaPlugin {
       }
 
     } else {
-      Log.e("ZeroConf", "Invalid action: " + action);
+      Log.e("MDNS", "Invalid action: " + action);
       callbackContext.error("Invalid action.");
       return false;
     }
@@ -119,8 +119,8 @@ public class MDNS extends CordovaPlugin {
     if (jmdns == null) {
       setupWatcher();
     }
-    Log.d("ZeroConf", "Watch " + type);
-    Log.d("ZeroConf",
+    Log.d("MDNS", "Watch " + type);
+    Log.d("MDNS",
         "Name: " + jmdns.getName() + " host: " + jmdns.getHostName());
     jmdns.addServiceListener(type, listener);
   }
@@ -150,25 +150,25 @@ public class MDNS extends CordovaPlugin {
   }
 
   private void setupWatcher() {
-    Log.d("ZeroConf", "Setup watcher");
+    Log.d("MDNS", "Setup watcher");
     try {
       jmdns = JmDNS.create();
       listener = new ServiceListener() {
 
         public void serviceResolved(ServiceEvent ev) {
-          Log.d("ZeroConf", "Resolved");
+          Log.d("MDNS", "Resolved");
 
           sendCallback("added", ev.getInfo());
         }
 
         public void serviceRemoved(ServiceEvent ev) {
-          Log.d("ZeroConf", "Removed");
+          Log.d("MDNS", "Removed");
 
           sendCallback("removed", ev.getInfo());
         }
 
         public void serviceAdded(ServiceEvent event) {
-          Log.d("ZeroConf", "Added");
+          Log.d("MDNS", "Added");
 
           // Force serviceResolved to be called again
           jmdns.requestServiceInfo(event.getType(), event.getName(), 1);
@@ -186,7 +186,7 @@ public class MDNS extends CordovaPlugin {
     try {
       status.put("action", action);
       status.put("service", jsonifyService(info));
-      Log.d("ZeroConf", "Sending result: " + status.toString());
+      Log.d("MDNS", "Sending result: " + status.toString());
 
       PluginResult result = new PluginResult(PluginResult.Status.OK,
           status);
