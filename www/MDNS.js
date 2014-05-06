@@ -4,7 +4,7 @@ var MDNS = function(type){
 
   Object.defineProperties(this,{
     handlers:{
-      enumerable: false,
+      enumerable: true,
       writable: true,
       configurable: true,
       value: {}
