@@ -17,10 +17,10 @@
 var exec = require('cordova/exec');
 
 var MDNS = {
-  test: function (type, callback) {
+  monitor: function (type, callback) {
     return exec(function (result) {
       callback && callback(result);
-    }, MDNS.fail, "MDNS", "whatever", [type]);
+    }, MDNS.fail, "MDNS", "monitor", [type]);
   },
   fail: function (o) {
     console.error("Error " + JSON.stringify(o));

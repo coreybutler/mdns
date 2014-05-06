@@ -1,31 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" id="com.ecor.ngn.MDNS" version="0.1.0">
-  <name>MDNS</name>
-  <description>mDNS Plugin for NGN</description>
-  <license>GPL</license>
-  <author>Corey Butler</author>
-  <keywords>ngn,mdns,bonjour,zeroconf</keywords>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.ecor.ngn.MDNS"
+    version="0.1.0">
+    <name>MDNS</name>
+    <description>Cordova MDNS Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,device,mdns</keywords>
+    <repo>https://github.com/coreybutler/mdns.git</repo>
+    <issue>https://github.com/coreybutler/mdns/issues</issue>
 
-  <js-module src="www/MDNS.js" name="MDNS">
-    <clobbers target="MDNS" />
-  </js-module>
+    <js-module src="www/MDNS.js" name="MDNS">
+        <clobbers target="MDNS" />
+    </js-module>
 
-  <engines>
-    <engine name="cordova" version=">=3.4.0" />
-  </engines>
+    <engines>
+      <engine name="cordova" version=">=3.0.0" />
+    </engines>
 
-  <!-- android -->
-  <platform name="android">
-    <config-file target="AndroidManifest.xml" parent="/manifest">
-        <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
-    </config-file>
-    <config-file target="res/xml/config.xml" parent="/*">
-      <feature name="MDNS">
-        <param name="android-package" value="com.ecor.ngn.MDNS"/>
-      </feature>
-    </config-file>
-    <source-file src="src/android/MDNS.java" target-dir="src/com/ecor/ngn" />
-    <source-file src="src/android/jmdns.jar" target-dir="libs" framework="true" />
-  </platform>
+    <!-- android -->
+    <platform name="android">
+      <config-file target="res/xml/config.xml" parent="/*">
+        <feature name="MDNS" >
+          <param name="android-package" value="com.ecor.ngn.MDNS"/>
+          <param name="onload" value="true" />
+        </feature>
+      </config-file>
+      <config-file target="AndroidManifest.xml" parent="/*">
+        <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+      </config-file>
+
+      <source-file src="src/android/MDNS.java" target-dir="src/com/ecor/ngn/MDNS" />
+    </platform>
+
+
+    <!-- ios -->
+    <platform name="ios">
+      <config-file target="config.xml" parent="/*">
+        <feature name="Discovery">
+          <param name="ios-package" value="CDVDiscovery"/>
+          <param name="onload" value="true" />
+        </feature>
+      </config-file>
+
+      <header-file src="src/ios/CDVDiscovery.h" />
+      <source-file src="src/ios/CDVDiscovery.m" />
+    </platform>
+
 </plugin>
