@@ -49,7 +49,7 @@ var MDNS = function(_type){
       }
     },
     listen: {
-      enumerable: false,
+      enumerable: true,
       writable: false,
       configurable: false,
       value: function(type){
