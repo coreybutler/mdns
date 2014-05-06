@@ -4,7 +4,7 @@ var MDNS = function(type){
 
   Object.defineProperties(this,{
     handlers:{
-      enumerable: true,
+      enumerable: false,
       writable: true,
       configurable: true,
       value: {}
@@ -20,7 +20,7 @@ var MDNS = function(type){
       writable: false,
       configurable: false,
       value: function(eventName,fn){
-        this.handlers[eventName] this.handlers[eventName] || [];
+        this.handlers[eventName] = this.handlers[eventName] || [];
         this.handlers[eventName].push(fn);
       }
     },
