@@ -74,7 +74,6 @@ var MDNS = function(_type){
     }
   });
 
-  this.listen(_type);
 };
 
 module.exports = MDNS;
