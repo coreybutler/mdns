@@ -1,32 +1,45 @@
 var exec = require('cordova/exec');
 
 var merge = function(source, target, force){
-    force = force || false;
-    Object.getOwnPropertyNames(source).forEach(function(attr) {
+  force = force || false;
+  Object.getOwnPropertyNames(source).forEach(function(attr) {
 
-      // If the attribute already exists,
-      // it will not be recreated, unless force is true.
-      if (target.hasOwnProperty(attr)){
-        if (force)
-          delete target[attr];
-      }
+    // If the attribute already exists,
+    // it will not be recreated, unless force is true.
+    if (target.hasOwnProperty(attr)){
+      if (force)
+        delete target[attr];
+    }
 
-      if (!target.hasOwnProperty(attr))
-        Object.defineProperty(target, attr, Object.getOwnPropertyDescriptor(source, attr));
+    if (!target.hasOwnProperty(attr))
+      Object.defineProperty(target, attr, Object.getOwnPropertyDescriptor(source, attr));
 
-    });
-    return target;
-  };
+  });
+  return target;
+};
 
 
 var MDNS = function(){
-  var me = this;
-  alert(EventEmitter.on);
-  exec(function(result) {
-    me.emit('evt',result);
-  }, function(e){
-    me.emit('error',e);
-  }, "MDNS", "monitor", []);
+
+  Object.defineProperties(this,{
+    listen: {
+      enumerable: true,
+      writable: false,
+      configurable: false,
+      value: function(type){
+        var me = this;
+        return exec(function(result) {
+            if (type){
+              me.emit('evt',result);
+              return;
+            }
+            me.emit('evt',result);
+          }, function(e){
+            me.emit('error',e);
+          }, "MDNS", "monitor", []);
+      }
+    }
+  });
 };
 
 // Add event emitter capabilities to MDNS
